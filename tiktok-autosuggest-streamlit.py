@@ -45,14 +45,14 @@ if submitted:
             if i['content'] not in kwdlist :
                 srclist.append(h['content'])
                 kwdlist.append(i['content'])
-          for j in getkwds(i['content'], region, language).json()['sug_list']:
+            for j in getkwds(i['content'], region, language).json()['sug_list']:
                 if j['content'] not in kwdlist :
                     srclist.append(i['content'])
                     kwdlist.append(j['content'])
-            for k in getkwds(j['content'], region, language).json()['sug_list']:
-                if k['content'] not in kwdlist :
-                    srclist.append(j['content'])
-                    kwdlist.append(k['content'])
+                for k in getkwds(j['content'], region, language).json()['sug_list']:
+                    if k['content'] not in kwdlist :
+                        srclist.append(j['content'])
+                        kwdlist.append(k['content'])
 
     df = pd.DataFrame(None)
     df['seed_keyword'] = srclist
