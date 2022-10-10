@@ -4,7 +4,6 @@ st.set_page_config(
     page_icon="chart_with_upwards_trend",
     layout="wide",
 )
-from streamlit_echarts import st_echarts
 import requests
 import json
 from stqdm import stqdm
