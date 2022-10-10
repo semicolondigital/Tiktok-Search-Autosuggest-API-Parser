@@ -9,6 +9,7 @@ import json
 from stqdm import stqdm
 from user_agent2 import (generate_user_agent)
 import pandas as pd
+import string
 
 st.title("TikTok Search Autosuggest API Parser")
 st.subheader("Extract keyword ideas from TikTok.")
@@ -72,4 +73,36 @@ if submitted:
         label = "📥 Download keyword ideas!",
         data = csv,
         file_name = 'tiktok_related_searches.csv',
+        mime = 'text/csv', )
+
+    st.subheader("Now, let's generate keyword ideas by adding alphabet letters to the end of the seed term.")
+    source_kws = []
+    final_kws = []
+    d = dict.fromkeys(string.ascii_lowercase, 0)
+    for abc in stqdm(d, desc='Extracting alphabetic related keywords'):
+      kwdseed = seedkwd + " " + abc
+      for iabc in getkwds(kwdseed, region, language).json()['sug_list']:
+        if iabc['content'] not in final_kws:
+          source_kws.append(kwdseed)
+          final_kws.append(iabc['content'])
+
+    dfalpha = pd.DataFrame(None)
+    dfalpha['seed_keyword'] = source_kws
+    dfalpha['related_searches'] = final_kws
+
+    dfalpha = dfalpha.explode('related_searches').reset_index(drop=True)
+    dfalpha = dfalpha.drop_duplicates().reset_index(drop=True)
+
+    st.dataframe(dfalpha, width=None, height=500, use_container_width=True)
+    
+    # add download button
+    def convert_df(dfalpha):  # IMPORTANT: Cache the conversion to prevent computation on every rerun
+        return dfalpha.to_csv().encode('utf-8')
+
+    csvalpha = convert_df(dfalpha)
+
+    st.download_button(
+        label = "📥 Download alphabet keyword ideas!",
+        data = csvalpha,
+        file_name = 'tiktok_alpha_related_searches.csv',
         mime = 'text/csv', )
