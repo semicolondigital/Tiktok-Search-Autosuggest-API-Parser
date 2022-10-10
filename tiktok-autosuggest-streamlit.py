@@ -54,41 +54,18 @@ if submitted:
                         srclist.append(j['content'])
                         kwdlist.append(k['content'])
 
-    df = pd.DataFrame(None)
-    df['seed_keyword'] = srclist
-    df['related_searches'] = kwdlist
-
-    df = df.explode('related_searches').reset_index(drop=True)
-    df = df.drop_duplicates().reset_index(drop=True)
-    st.write(len(df), "keywords found, printing results...")
-    st.dataframe(df, width=None, height=500, use_container_width=True)
-
-    # add download button
-    def convert_df(df):  # IMPORTANT: Cache the conversion to prevent computation on every rerun
-        return df.to_csv().encode('utf-8')
-
-    csv = convert_df(df)
-
-    st.download_button(
-        label = "📥 Download keyword ideas!",
-        data = csv,
-        file_name = 'tiktok_related_searches.csv',
-        mime = 'text/csv', )
-
     st.subheader("Now, let's generate keyword ideas by adding alphabet letters to the end of the seed term.")
-    source_kws = []
-    final_kws = []
     d = dict.fromkeys(string.ascii_lowercase, 0)
     for abc in stqdm(d, desc='Extracting alphabetic related keywords'):
       kwdseed = seedkwd + " " + abc
       for iabc in getkwds(kwdseed, region, language).json()['sug_list']:
-        if iabc['content'] not in final_kws:
-          source_kws.append(kwdseed)
-          final_kws.append(iabc['content'])
+        if iabc['content'] not in kwdlist:
+          srclist.append(kwdseed)
+          kwdlist.append(iabc['content'])
 
     dfalpha = pd.DataFrame(None)
-    dfalpha['seed_keyword'] = source_kws
-    dfalpha['related_searches'] = final_kws
+    dfalpha['seed_keyword'] = srclist
+    dfalpha['related_searches'] = kwdlist
 
     dfalpha = dfalpha.explode('related_searches').reset_index(drop=True)
     dfalpha = dfalpha.drop_duplicates().reset_index(drop=True)
@@ -102,7 +79,7 @@ if submitted:
     csvalpha = convert_df(dfalpha)
 
     st.download_button(
-        label = "📥 Download alphabet keyword ideas!",
+        label = "📥 Download TikTok Keyword Ideas!",
         data = csvalpha,
-        file_name = 'tiktok_alpha_related_searches.csv',
+        file_name = 'tiktok_keywords_ideas.csv',
         mime = 'text/csv', )
