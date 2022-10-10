@@ -62,7 +62,7 @@ if submitted:
     print("Removing duplicates...")
     df = df.drop_duplicates().reset_index(drop=True)
     st.write(len(df), "keywords found, printing results...")
-    st.dataframe(df, 200, 100)
+    st.dataframe(df, width=None, height=500)
 
     # add download button
     def convert_df(df):  # IMPORTANT: Cache the conversion to prevent computation on every rerun
