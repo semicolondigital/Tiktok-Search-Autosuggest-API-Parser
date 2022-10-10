@@ -54,7 +54,6 @@ if submitted:
                         srclist.append(j['content'])
                         kwdlist.append(k['content'])
 
-    st.subheader("Now, let's generate keyword ideas by adding alphabet letters to the end of the seed term.")
     d = dict.fromkeys(string.ascii_lowercase, 0)
     for abc in stqdm(d, desc='Extracting alphabetic related keywords'):
       kwdseed = seedkwd + " " + abc
@@ -70,6 +69,7 @@ if submitted:
     dfalpha = dfalpha.explode('related_searches').reset_index(drop=True)
     dfalpha = dfalpha.drop_duplicates().reset_index(drop=True)
 
+    st.subheader(len(dfalpha), "keywords found, printing results...")
     st.dataframe(dfalpha, width=None, height=500, use_container_width=True)
     
     # add download button
