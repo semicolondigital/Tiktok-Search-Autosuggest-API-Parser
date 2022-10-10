@@ -11,9 +11,8 @@ from user_agent2 import (generate_user_agent)
 import pandas as pd
 
 st.title("TikTok Search Autosuggest API Parser")
-st.subheader("Extract keyword ideas from TikTok autosuggest API.")
-st.write("This was made in less than an hour, just for fun and educational purposes. The script will run through a series of loops in order to get some extra keywords, as the suggestions are limited to only 7 per keyword.")
-st.write("You can also generated keyword ideas by adding alphabet letters to your seed search term.")
+st.subheader("Extract keyword ideas from TikTok.")
+st.write("This was made in less than an hour, just for fun and educational purposes. The script will run through a series of loops in order to get some extra keywords, as the suggestions are limited to only 7 per keyword. You can also generated keyword ideas by adding alphabet letters to your seed search term.")
 st.write("You need to enter the search term, the country, and the language code in ISO-3166 and ISO-639 respectively. For example US for USA and EN for English.")
 st.write("")
 
@@ -59,7 +58,6 @@ if submitted:
     df['related_searches'] = kwdlist
 
     df = df.explode('related_searches').reset_index(drop=True)
-    print("Removing duplicates...")
     df = df.drop_duplicates().reset_index(drop=True)
     st.write(len(df), "keywords found, printing results...")
     st.dataframe(df, width=None, height=500, use_container_width=True)
