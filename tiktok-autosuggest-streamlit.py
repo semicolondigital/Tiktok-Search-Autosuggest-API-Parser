@@ -42,14 +42,17 @@ if submitted:
         srclist.append(seedkwd)
         kwdlist.append(h['content'])
         for i in getkwds(h['content'], region, language).json()['sug_list']:
-          srclist.append(h['content'])
-          kwdlist.append(i['content'])
+            if i['content'] not in kwdlist :
+                srclist.append(h['content'])
+                kwdlist.append(i['content'])
           for j in getkwds(i['content'], region, language).json()['sug_list']:
-            srclist.append(i['content'])
-            kwdlist.append(j['content'])
+                if j['content'] not in kwdlist :
+                    srclist.append(i['content'])
+                    kwdlist.append(j['content'])
             for k in getkwds(j['content'], region, language).json()['sug_list']:
-              srclist.append(j['content'])
-              kwdlist.append(k['content'])
+                if k['content'] not in kwdlist :
+                    srclist.append(j['content'])
+                    kwdlist.append(k['content'])
 
     df = pd.DataFrame(None)
     df['seed_keyword'] = srclist
@@ -59,7 +62,7 @@ if submitted:
     print("Removing duplicates...")
     df = df.drop_duplicates().reset_index(drop=True)
     st.write(len(df), "keywords found, printing results...")
-    st.table(df)
+    st.dataframe(df, 200, 100)
 
     # add download button
     def convert_df(df):  # IMPORTANT: Cache the conversion to prevent computation on every rerun
