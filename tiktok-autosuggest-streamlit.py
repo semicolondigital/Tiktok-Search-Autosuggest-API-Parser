@@ -69,7 +69,8 @@ if submitted:
     dfalpha = dfalpha.explode('related_searches').reset_index(drop=True)
     dfalpha = dfalpha.drop_duplicates().reset_index(drop=True)
 
-    st.subheader(len(dfalpha) + " keywords found, printing results...")
+    lastitle = len(dfalpha) + " keywords found, printing results..."
+    st.subheader(lastitle)
     st.dataframe(dfalpha, width=None, height=500, use_container_width=True)
     
     # add download button
