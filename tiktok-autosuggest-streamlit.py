@@ -28,15 +28,15 @@ with st.form(key='columns_in_form_2'):
         ('en', 'es', 'fr', 'de', 'it', 'ru', 'pt', 'pl'))
     submitted = st.form_submit_button('Start')
 
-@st.cache(suppress_st_warning=True)
-def getkwds(seed_keyword, reg, lang):
-    ua = generate_user_agent(navigator="chrome")
-    header = {'User-Agent': str(ua)}
-    getterms_url = "https://www.tiktok.com/api/search/general/preview/?app_language=" + lang + "&keyword=" + seed_keyword + "&region=" + reg
-    response = requests.get(getterms_url, headers=header)
-    return response
-
 if submitted:
+    @st.cache
+    def getkwds(seed_keyword, reg, lang):
+        ua = generate_user_agent(navigator="chrome")
+        header = {'User-Agent': str(ua)}
+        getterms_url = "https://www.tiktok.com/api/search/general/preview/?app_language=" + lang + "&keyword=" + seed_keyword + "&region=" + reg
+        response = requests.get(getterms_url, headers=header)
+        return response
+
     srclist = []
     kwdlist = []
     
