@@ -29,7 +29,7 @@ with st.form(key='columns_in_form_2'):
     submitted = st.form_submit_button('Start')
 
 if submitted:
-    @st.cache
+    @st.cache(suppress_st_warning=False)
     def getkwds(seed_keyword, reg, lang):
         ua = generate_user_agent(navigator="chrome")
         header = {'User-Agent': str(ua)}
