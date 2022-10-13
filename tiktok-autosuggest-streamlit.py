@@ -1,6 +1,6 @@
 import streamlit as st
 st.set_page_config(
-    page_title="TikTok Search Autosuggest API Parser",
+    page_title="TikTok Search Autosuggest API Parser - SEO",
     page_icon="chart_with_upwards_trend",
     layout="wide",
 )
@@ -11,6 +11,7 @@ from user_agent2 import (generate_user_agent)
 import pandas as pd
 import string
 
+st.title("TikTok Search Autosuggest API Parser")
 tab1, tab2 = st.tabs(["♪ TikTok Search Autosuggest Parser", "ℹ️ Notes"])
 
 tab1.subheader("Extract keyword ideas from TikTok.")
