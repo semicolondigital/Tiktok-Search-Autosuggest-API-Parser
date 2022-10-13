@@ -23,9 +23,9 @@ tab2.write("Country and Language codes are in ISO-3166 and ISO-639 format respec
 tab2.write("For some short-tail generic keywords, TikTok seems to suggest very broad results when using their API, something that doesn't happen if you use the app.")
 
 tab3.subheader("Useful links for your journey to TikTok SEO")
-tab3.write("""* Rise at Seven: [The ultimate guide to TikTok SEO](https://riseatseven.com/blog/the-ultimate-guide-to-tiktok-seo/)<br>
-            * NoGood: [TikTok SEO Strategies: How to Rank for TikTok Search Results](https://nogood.io/2022/08/19/tiktok-seo/)<br>
-            * Tuff: [TikTok SEO What is it and how to rank](https://tuffgrowth.com/tiktok-seo-what-is-it-and-how-to-rank/)""")
+tab3.write("* Rise at Seven: [The ultimate guide to TikTok SEO](https://riseatseven.com/blog/the-ultimate-guide-to-tiktok-seo/)")
+tab3.write("* NoGood: [TikTok SEO Strategies: How to Rank for TikTok Search Results](https://nogood.io/2022/08/19/tiktok-seo/)")
+tab3.write("* Tuff: [TikTok SEO What is it and how to rank](https://tuffgrowth.com/tiktok-seo-what-is-it-and-how-to-rank/)")
 
 st.write("")
 
