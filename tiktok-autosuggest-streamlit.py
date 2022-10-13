@@ -71,7 +71,7 @@ if submitted:
     dfalpha = dfalpha.drop_duplicates().reset_index(drop=True)
 
     st.subheader(str(len(dfalpha)) + " keywords found, printing results...")
-    st.dataframe(dfalpha(showindex=False), width=None, height=500, use_container_width=True)
+    st.dataframe(dfalpha.hide_index(), width=None, height=500, use_container_width=True)
     
     # add download button
     def convert_df(dfalpha):  # IMPORTANT: Cache the conversion to prevent computation on every rerun
