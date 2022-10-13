@@ -72,6 +72,13 @@ if submitted:
 
     st.subheader(str(len(dfalpha)) + " keywords found, printing results...")
     # Inject CSS with Markdown to hide index for rows
+    # CSS to inject contained in a string
+    hide_dataframe_row_index = """
+                <style>
+                .row_heading.level0 {display:none}
+                .blank {display:none}
+                </style>
+                """
     st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
     st.dataframe(dfalpha, width=None, height=500, use_container_width=True)
     
