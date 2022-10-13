@@ -12,7 +12,7 @@ import pandas as pd
 import string
 
 st.title("TikTok Search Autosuggest API Parser")
-tab1, tab2 = st.tabs(["♪ TikTok Search Autosuggest Parser", "ℹ️ Notes"])
+tab1, tab2, tab3 = st.tabs(["♪ TikTok Search Autosuggest Parser", "ℹ️ Notes", "📈 TikTok SEO"])
 
 tab1.subheader("Extract keyword ideas from TikTok.")
 tab1.write("This was made in less than an hour, just for fun and educational purposes. The script will run through a series of loops in order to get some extra keywords, as the suggestions are limited to only 7 per keyword. You can also generated keyword ideas by adding alphabet letters to your seed search term.")
@@ -21,6 +21,10 @@ tab1.write("Author: [Martin Aberastegue](https://twitter.com/xyborg)")
 tab2.subheader("Some notes and known issues.")
 tab2.write("Country and Language codes are in ISO-3166 and ISO-639 format respectively. For example US for USA and EN for English.")
 tab2.write("For some short-tail generic keywords, TikTok seems to suggest very broad results when using their API, something that doesn't happen if you use the app.")
+
+tab3.subheader("Useful links for your journey to TikTok SEO")
+tab3.write("[Rise at Seven: The ultimate guide to TikTok SEO](https://riseatseven.com/blog/the-ultimate-guide-to-tiktok-seo/)")
+tab3.write("[NoGood: TikTok SEO Strategies: How to Rank for TikTok Search Results](https://nogood.io/2022/08/19/tiktok-seo/)")
 
 st.write("")
 
