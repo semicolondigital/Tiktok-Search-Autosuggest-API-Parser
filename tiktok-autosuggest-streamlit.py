@@ -2,7 +2,7 @@ import streamlit as st
 st.set_page_config(
     page_title="TikTok Search Autosuggest API Parser - SEO",
     page_icon="chart_with_upwards_trend",
-    layout="wide",
+    layout="centered",
 )
 import requests
 import json
